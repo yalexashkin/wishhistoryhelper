@@ -39,16 +39,18 @@ public class LogcatRunner {
                 wl = WishLink.tryFromLog(line);
                 if (wl == null)
                     continue;
-                Log.e("hgh", "jgb");
                lr.processLink(wl);
             }
             handler.postDelayed(this::pollLog, 250);
-        } catch (IOException ignored) {
-            throw new RuntimeException("hj");
-        }
+        } catch (IOException ignored) { }
     }
 
     void destroy() {
+        try {
+            data.close();
+        } catch (IOException ignored) { }
+        data = null;
         process.destroy();
+        process = null;
     }
 }

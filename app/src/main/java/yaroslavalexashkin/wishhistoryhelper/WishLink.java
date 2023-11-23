@@ -16,7 +16,7 @@ public class WishLink {
 
     private WishLink(@NotNull String entry) {
         link = entry.substring(entry.indexOf("https://"));
-        String[] vals = link.split("&");
+        String[] vals = link.split("[&#]");
         for (String s:
                 vals) {
             if (s.startsWith("region="))

@@ -103,7 +103,7 @@ public class LinkGetterService extends Service implements LinkReciever {
             runner.destroy();
             runner = null;
         }
-        stopForeground(true);
+        stopForeground(Service.STOP_FOREGROUND_REMOVE);
         super.onDestroy();
     }
     int notifId = 55;

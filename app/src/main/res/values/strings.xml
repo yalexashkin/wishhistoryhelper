@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Wish history helper</string>
+    <string name="service_started_text">Service started</string>
+    <string name="no_root_access_text">No root access</string>
+    <string name="link_getter_notification_title">Link getter is running (tap to stop)</string>
+    <string name="link_getter_notification_content">open wish history to capture a link</string>
+    <string name="link_copied_text">Link copied!</string>
+    <string name="click_to_copy_text">click to copy</string>
+    <string name="link_notification_title">Got link (region=%s, game=%s)</string>
+    <string name="start_link_getter_service">Start link getter service</string>
+    <string name="use_root_to_grant_permissions">Use root to grant permissions</string>
+    <string name="execute_from_adb_text">Execute from ADB to grant\nrequired permissions:</string>
+    <string name="check_permissions_text">Check permissions</string>
+    <string name="root_grant_cmd">pm grant yaroslavalexashkin.wishhistoryhelper android.permission.READ_LOGS\nexit\n
+    </string>
+    <string name="adb_grant_cmd">adb shell pm grant yaroslavalexashkin.wishhistoryhelper android.permission.READ_LOGS
+    </string>
 </resources>

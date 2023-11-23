@@ -8,7 +8,7 @@
         android:fitsSystemWindows="true"
         tools:context=".MainActivity">
     <Button
-            android:text="Start link getter service"
+            android:text="@string/start_link_getter_service"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/StartServiceBtn"
             app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,7 @@
             android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="32dp" android:id="@+id/noPermsLayout">
         <Button
-                android:text="Use root to grant permissions"
+                android:text="@string/use_root_to_grant_permissions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/rootGrant"
                 app:layout_constraintTop_toBottomOf="@+id/adbGrantPermsText"
@@ -30,13 +30,13 @@
                 android:layout_marginTop="8dp" android:onClick="rootGrant"
         />
         <TextView
-                android:text="Execute from ADB to grant\nrequired permissions:"
+                android:text="@string/execute_from_adb_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/textViewNoPerms"
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
         <TextView
-                android:text="adb shell pm grant yaroslavalexashkin.wishhistoryhelper android.permission.READ_LOGS"
+                android:text="@string/adb_grant_cmd"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" android:id="@+id/adbGrantPermsText"
                 app:layout_constraintTop_toBottomOf="@+id/textViewNoPerms"
@@ -44,7 +44,7 @@
                 android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginTop="8dp"
                 android:textIsSelectable="true"/>
         <Button
-                android:text="Check permissions"
+                android:text="@string/check_permissions_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/checkPermsBtn"
                 app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"

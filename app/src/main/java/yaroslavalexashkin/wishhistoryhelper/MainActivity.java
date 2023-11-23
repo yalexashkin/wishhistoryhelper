@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             Process process = Runtime.getRuntime().exec("su");
             OutputStreamWriter osw = new OutputStreamWriter(process.getOutputStream());
-            osw.write("pm grant yaroslavalexashkin.wishhistoryhelper android.permission.READ_LOGS\nexit\n");
+            osw.write(getString(R.string.root_grant_cmd));
             osw.flush();
             process.waitFor();
             osw.close();
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             permsUiSwitch();
         }
         catch (Exception e) {
-            Toast.makeText(this, "No root access", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_root_access_text, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         if (checkPerms() && !LinkGetterService.isServiceRunning) {
             Intent serviceIntent = new Intent(this, LinkGetterService.class);
             ContextCompat.startForegroundService(this, serviceIntent);
-            Toast.makeText(this, "Service started", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.service_started_text, Toast.LENGTH_SHORT).show();
         }
     }
 

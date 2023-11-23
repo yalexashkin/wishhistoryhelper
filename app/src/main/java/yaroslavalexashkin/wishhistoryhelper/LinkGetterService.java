@@ -48,9 +48,9 @@ public class LinkGetterService extends Service implements LinkReciever {
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText("link", link);
                 clipboard.setPrimaryClip(clip);
-                ((NotificationManager)getSystemService(NOTIFICATION_SERVICE))
+                ((NotificationManager) getSystemService(NOTIFICATION_SERVICE))
                         .cancel(intent.getIntExtra("notificationId", 123));
-                Toast.makeText(this, "Link copied!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.link_copied_text, Toast.LENGTH_SHORT).show();
                 return Service.START_NOT_STICKY;
             }
         }
@@ -62,8 +62,8 @@ public class LinkGetterService extends Service implements LinkReciever {
                 PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         notification = new NotificationCompat.Builder(this, LinkGetter_ChannelID)
                 .setSmallIcon(R.drawable.ic_launcher)
-                .setContentTitle("Link getter is running (tap to stop)")
-                .setContentText("open wish history to capture a link")
+                .setContentTitle(getString(R.string.link_getter_notification_title))
+                .setContentText(getString(R.string.link_getter_notification_content))
                 .setOngoing(true)
                 .setContentIntent(deletePendingIntent)
                 .build();
@@ -112,8 +112,8 @@ public class LinkGetterService extends Service implements LinkReciever {
         int notificationId = notifId++;
         NotificationCompat.Builder nb = new NotificationCompat.Builder(this, ShowLink_ChannelID)
                 .setSmallIcon(R.drawable.link)
-                .setContentTitle(String.format("Got link (region=%s, game=%s)", wl.region, wl.game))
-                .setContentText("click to copy");
+                .setContentTitle(String.format(getString(R.string.link_notification_title), wl.region, wl.game))
+                .setContentText(getString(R.string.click_to_copy_text));
         Intent intent = new Intent(this, LinkGetterService.class);
         intent.putExtra("notificationId", notificationId);
         intent.putExtra("link", wl.link);

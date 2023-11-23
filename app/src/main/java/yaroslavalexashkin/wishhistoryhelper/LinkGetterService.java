@@ -12,6 +12,8 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.ServiceCompat;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Random;
+
 public class LinkGetterService extends Service implements LinkReciever {
     public static boolean isServiceRunning;
     private final String LinkGetter_ChannelID = "Link getter service";
@@ -106,10 +108,9 @@ public class LinkGetterService extends Service implements LinkReciever {
         stopForeground(Service.STOP_FOREGROUND_REMOVE);
         super.onDestroy();
     }
-    int notifId = 55;
     @Override
     public void processLink(@NotNull WishLink wl) {
-        int notificationId = notifId++;
+        int notificationId = Math.abs(new Random().nextInt());
         NotificationCompat.Builder nb = new NotificationCompat.Builder(this, ShowLink_ChannelID)
                 .setSmallIcon(R.drawable.link)
                 .setContentTitle(String.format(getString(R.string.link_notification_title), wl.region, wl.game))
@@ -118,7 +119,7 @@ public class LinkGetterService extends Service implements LinkReciever {
         intent.putExtra("notificationId", notificationId);
         intent.putExtra("link", wl.link);
         PendingIntent pi = PendingIntent.getService(this,notificationId,intent,
-                PendingIntent.FLAG_IMMUTABLE);
+                PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         nb.setContentIntent(pi);
         ((NotificationManager)getSystemService(NOTIFICATION_SERVICE)).notify(notificationId, nb.build());
     }

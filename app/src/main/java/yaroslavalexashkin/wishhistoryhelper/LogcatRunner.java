@@ -2,7 +2,6 @@ package yaroslavalexashkin.wishhistoryhelper;
 
 import android.content.Context;
 import android.os.Handler;
-import android.util.Log;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
@@ -42,7 +41,7 @@ public class LogcatRunner {
                lr.processLink(wl);
             }
             handler.postDelayed(this::pollLog, 250);
-        } catch (IOException ignored) { }
+        } catch (Exception ignored) { }
     }
 
     void destroy() {

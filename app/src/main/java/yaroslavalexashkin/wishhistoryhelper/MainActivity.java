@@ -14,7 +14,6 @@ import yaroslavalexashkin.wishhistoryhelper.databinding.ActivityMainBinding;
 import java.io.*;
 
 public class MainActivity extends AppCompatActivity {
-    private ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
             startService((View)null);
             finishAndRemoveTask();
         }
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        yaroslavalexashkin.wishhistoryhelper.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         permsUiSwitch();
     }

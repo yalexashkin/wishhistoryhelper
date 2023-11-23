@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">WHH-debug</string>
+    <string name="root_grant_cmd">pm grant yaroslavalexashkin.wishhistoryhelper.debug android.permission.READ_LOGS\nexit\n
+    </string>
+    <string name="adb_grant_cmd">adb shell pm grant yaroslavalexashkin.wishhistoryhelper.debug android.permission.READ_LOGS
+    </string>
+</resources>

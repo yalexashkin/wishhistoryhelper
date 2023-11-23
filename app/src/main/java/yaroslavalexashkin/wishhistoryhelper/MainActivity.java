@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (checkPerms()) {
-            startService((View)null);
-            finishAndRemoveTask();
+            //startService((View)null);
+            //finishAndRemoveTask();
         }
         yaroslavalexashkin.wishhistoryhelper.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

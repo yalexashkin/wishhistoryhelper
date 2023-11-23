@@ -61,7 +61,7 @@ public class LinkGetterService extends Service implements LinkReciever {
                 deleteIntent,
                 PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         notification = new NotificationCompat.Builder(this, LinkGetter_ChannelID)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setSmallIcon(R.drawable.ic_launcher)
                 .setContentTitle("Link getter is running (tap to stop)")
                 .setContentText("open wish history to capture a link")
                 .setOngoing(true)
@@ -111,7 +111,7 @@ public class LinkGetterService extends Service implements LinkReciever {
     public void processLink(@NotNull WishLink wl) {
         int notificationId = notifId++;
         NotificationCompat.Builder nb = new NotificationCompat.Builder(this, ShowLink_ChannelID)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setSmallIcon(R.drawable.link)
                 .setContentTitle(String.format("Got link (region=%s, game=%s)", wl.region, wl.game))
                 .setContentText("click to copy");
         Intent intent = new Intent(this, LinkGetterService.class);

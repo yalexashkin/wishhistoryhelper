@@ -15,4 +15,5 @@
     </string>
     <string name="adb_grant_cmd">adb shell pm grant yaroslavalexashkin.wishhistoryhelper android.permission.READ_LOGS
     </string>
+    <string name="re_launch_app_toast">Please re-launch app</string>
 </resources>

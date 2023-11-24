@@ -38,7 +38,7 @@ public class LogcatRunner {
                 wl = WishLink.tryFromLog(line);
                 if (wl == null)
                     continue;
-               lr.processLink(wl);
+                lr.processLink(wl);
             }
             handler.postDelayed(this::pollLog, 250);
         } catch (Exception ignored) { }

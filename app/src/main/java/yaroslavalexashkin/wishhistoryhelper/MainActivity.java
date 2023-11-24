@@ -14,22 +14,33 @@ import yaroslavalexashkin.wishhistoryhelper.databinding.ActivityMainBinding;
 import java.io.*;
 
 public class MainActivity extends AppCompatActivity {
+    static int permsRecieved = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (checkPerms()) {
+            if (permsRecieved == 0) {//workaround for when app was exited but not killed
+                Toast.makeText(this, R.string.re_launch_app_toast, Toast.LENGTH_SHORT).show();
+                permsRecieved = 1;
+                System.exit(0);//hack bc permissions are somewhat buggy (logcat doesnt show other apps logs)
+            }
             startService((View)null);
             finishAndRemoveTask();
+        } else {
+            permsRecieved = 0;
+            yaroslavalexashkin.wishhistoryhelper.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+            setContentView(binding.getRoot());
+            permsUiSwitch();
         }
-        yaroslavalexashkin.wishhistoryhelper.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        permsUiSwitch();
     }
 
     void permsUiSwitch() {
         if (checkPerms()) {
             findViewById(R.id.noPermsLayout).setVisibility(View.INVISIBLE);
             findViewById(R.id.StartServiceBtn).setVisibility(View.VISIBLE);
+            Toast.makeText(this, R.string.re_launch_app_toast, Toast.LENGTH_SHORT).show();
+            permsRecieved = 1;
+            System.exit(0);
         } else {
             findViewById(R.id.noPermsLayout).setVisibility(View.VISIBLE);
             findViewById(R.id.StartServiceBtn).setVisibility(View.INVISIBLE);

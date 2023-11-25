@@ -2,7 +2,6 @@ package yaroslavalexashkin.wishhistoryhelper;
 
 import android.content.Context;
 import android.os.Handler;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +12,7 @@ public class LogcatRunner {
     BufferedReader data;
     final Handler handler;
     LinkReciever lr;
-    LogcatRunner(@NotNull Context c, LinkReciever lr) {
+    LogcatRunner(Context c, LinkReciever lr) {
         handler = new Handler(c.getMainLooper());
         this.lr = lr;
         try {

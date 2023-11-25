@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
+        android:orientation="vertical"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -10,45 +11,31 @@
     <Button
             android:text="@string/start_link_getter_service"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/StartServiceBtn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:onClick="startService"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
-    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_height="wrap_content" android:id="@+id/StartServiceBtn" android:onClick="startService"/>
+    <LinearLayout
             android:orientation="vertical"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="32dp" android:id="@+id/noPermsLayout">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginTop="32dp" android:id="@+id/noPermsLayout">
         <Button
                 android:text="@string/use_root_to_grant_permissions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/rootGrant"
-                app:layout_constraintTop_toBottomOf="@+id/adbGrantPermsText"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="8dp" android:onClick="rootGrant"
         />
         <TextView
                 android:text="@string/execute_from_adb_text"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/textViewNoPerms"
-                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                android:layout_height="wrap_content" android:id="@+id/textViewNoPerms"/>
         <TextView
                 android:text="@string/adb_grant_cmd"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/adbGrantPermsText"
-                app:layout_constraintTop_toBottomOf="@+id/textViewNoPerms"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginTop="8dp"
                 android:textIsSelectable="true"/>
         <Button
                 android:text="@string/check_permissions_text"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/checkPermsBtn"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rootGrant" android:layout_marginTop="8dp"
+                android:layout_height="wrap_content" android:id="@+id/checkPermsBtn" android:layout_marginTop="8dp"
                 android:onClick="checkPermissionsBtn"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,19 +1,16 @@
 package yaroslavalexashkin.wishhistoryhelper;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import yaroslavalexashkin.wishhistoryhelper.databinding.ActivityMainBinding;
 
 import java.io.*;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     static int permsRecieved = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +25,7 @@ public class MainActivity extends AppCompatActivity {
             finishAndRemoveTask();
         } else {
             permsRecieved = 0;
-            yaroslavalexashkin.wishhistoryhelper.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
-            setContentView(binding.getRoot());
+            setContentView(R.layout.activity_main);
             permsUiSwitch();
         }
     }
@@ -48,8 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     boolean checkPerms() {
-        return (ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.READ_LOGS) == PackageManager.PERMISSION_GRANTED);
+        return (checkSelfPermission(Manifest.permission.READ_LOGS) == PackageManager.PERMISSION_GRANTED);
     }
 
     public void rootGrant(View view) {
@@ -72,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     public void startService(View view) {
         if (checkPerms() && !LinkGetterService.isServiceRunning) {
             Intent serviceIntent = new Intent(this, LinkGetterService.class);
-            ContextCompat.startForegroundService(this, serviceIntent);
+            startForegroundService(serviceIntent);
             Toast.makeText(this, R.string.service_started_text, Toast.LENGTH_SHORT).show();
         }
     }

@@ -8,9 +8,6 @@ import android.content.pm.ServiceInfo;
 import android.os.Build;
 import android.os.IBinder;
 import android.widget.Toast;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.ServiceCompat;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
@@ -62,7 +59,7 @@ public class LinkGetterService extends Service implements LinkReciever {
                 123,
                 deleteIntent,
                 PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-        notification = new NotificationCompat.Builder(this, LinkGetter_ChannelID)
+        notification = new Notification.Builder(this, LinkGetter_ChannelID)
                 .setSmallIcon(R.drawable.ic_launcher)
                 .setContentTitle(getString(R.string.link_getter_notification_title))
                 .setContentText(getString(R.string.link_getter_notification_content))
@@ -74,13 +71,16 @@ public class LinkGetterService extends Service implements LinkReciever {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             type = ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE;
         }
-        ServiceCompat.startForeground(
-                /* service = */
-                this,
-                /* id = */ 100, // Cannot be 0
-                /* notification = */ notification,
-                /* foregroundServiceType = */ type
-        );
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            startForeground(
+                    /* service = */
+                    /* id = */ 100, // Cannot be 0
+                    /* notification = */ notification,
+                    /* foregroundServiceType = */ type
+            );
+        } else {
+            startForeground(100, notification);
+        }
         return START_NOT_STICKY;
     }
 
@@ -109,9 +109,9 @@ public class LinkGetterService extends Service implements LinkReciever {
         super.onDestroy();
     }
     @Override
-    public void processLink(@NotNull WishLink wl) {
+    public void processLink(WishLink wl) {
         int notificationId = Math.abs(new Random().nextInt());
-        NotificationCompat.Builder nb = new NotificationCompat.Builder(this, ShowLink_ChannelID)
+        Notification.Builder nb = new Notification.Builder(this, ShowLink_ChannelID)
                 .setSmallIcon(R.drawable.link)
                 .setContentTitle(String.format(getString(R.string.link_notification_title), wl.region, wl.game))
                 .setContentText(getString(R.string.click_to_copy_text));
